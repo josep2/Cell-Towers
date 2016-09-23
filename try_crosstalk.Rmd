@@ -1,0 +1,53 @@
+---
+title: "Cell Towers In The United States"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    theme: default
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(crosstalk)
+library(leaflet)
+library(dplyr)
+
+data = read.csv('Cellular_Towers.csv')
+
+data = plyr::rename(data, c("X"="long", "Y"="lat"))
+
+sd <-SharedData$new(data)
+```
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+filter_select("LOCSTATE", "State", sd, group = "LOCSTATE", allLevels = FALSE, multiple = TRUE)
+filter_slider("HEIGHT", "Tower Height (m)", sd, "ALLSTRUC", step = 50, round = FALSE,
+  ticks = TRUE, animate = FALSE, width = NULL, sep = ",", pre = NULL,
+  post = NULL, timeFormat = NULL, timezone = NULL, dragRange = TRUE)
+```
+
+---
+
+This page aims to display cell towers in the U.S. as outlined by the Homeland [Infrastructure Foundation](https://hifld-dhs-gii.opendata.arcgis.com/datasets/b32014e1133945d080a0646e936043f7_0?uiTab=table&geometry=-131.426%2C16.127%2C-11.807%2C39.23&orderByFields=LICENSEE+DESC)[1]. Each circle represents a site with a cellular tower. You can click on any circle to see who the licensee is. I've included the ability to toggle between States and tower height, made possible by [crosstalk](https://github.com/rstudio/crosstalk). There is a lot of data to start with so try to reduce the amount of data with the filters.
+
+Project: Jowanza Joseph. Feel free to visit my [blog](http://www.jowanza.com) or say hi on [Twitter](https://www.twitter.com/jowanza). 
+
+[1] Any mistakes or omissions are from the data.
+
+Row {data-height=900}
+-------------------------------------
+
+###
+
+```{r}
+leaflet(sd) %>%
+  addTiles() %>%
+  addCircleMarkers(stroke = FALSE, fillOpacity = 0.5,popup =data$LICENSEE) %>%
+  setView(lng = -71.0589, lat = 42.3601, zoom = 3)
+
+```
+
+
