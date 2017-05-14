@@ -1,0 +1,80 @@
+{
+  "name": "josep2/Cell-Towers",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "Cell Towers",
+  "branch": "",
+  "style": {
+    "name": "Williamsburg",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/LightBannerHeader",
+      "article": "article/ReaderArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "Montserrat, sans-serif",
+    "heading": {
+      "fontWeight": 600,
+      "letterSpacing": "0.1em"
+    },
+    "colors": {
+      "text": "#346",
+      "background": "#fff",
+      "primary": "#0099e0",
+      "secondary": "#ab61ff",
+      "highlight": "#f7b",
+      "muted": "#fffab3",
+      "border": "#ccd"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/josep2/Cell-Towers",
+          "text": "GitHub"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "Cell-Towers",
+      "subhead": "An Example of CrossTalk and Leaflet",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "Cell-Towers: An Example of CrossTalk and Leaflet",
+          "url": ""
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "josep2",
+          "repo": "Cell-Towers"
+        }
+      ]
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n\n<p>Project hosted <a href=\"http://cell-towers.pubstorm.site/\">here</a>.</p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/josep2/Cell-Towers",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/josep2",
+          "text": "josep2"
+        }
+      ]
+    }
+  ]
+}
